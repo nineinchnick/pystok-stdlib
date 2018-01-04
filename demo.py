@@ -5,14 +5,19 @@ import argparse
 import time
 
 import conf  # noqa
-from decorators import timelog, proflog
+from decorators import timelog
 
 
 @timelog
-@proflog()
-def doit():
-    time.sleep(5)
-    print('Done')
+def doit(n=None):
+    """Returns the n argument or prints Done.
+
+    >>> [doit(5) for n in range(3)]
+    [5, 5, 5]"""
+    time.sleep(1)
+    if n is None:
+        print('Done')
+    return n
 
 
 def main(dry_run=False):
