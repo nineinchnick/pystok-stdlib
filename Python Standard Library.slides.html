@@ -11914,8 +11914,9 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>PSL is the biggest part of <a href="https://docs.python.org/3.6/contents.html">https://docs.python.org/3.6/contents.html</a>
-Some things are obsolete (Template?), some specialized (media, shlex, NNTP!?) but some just overlooked</p>
+<p>PSL is the biggest part of <a href="https://docs.python.org/3.6/contents.html">https://docs.python.org/3.6/contents.html</a></p>
+<p>Some things are obsolete (Template?), some specialized (media, shlex, NNTP!?) but some just overlooked.</p>
+<p>Some are so simple they might be widely known, some use cases might not apply to most people but we're trying to learn some new tricks.</p>
 
 </div>
 </div>
@@ -12129,6 +12130,9 @@ Some things are obsolete (Template?), some specialized (media, shlex, NNTP!?) bu
 <span class="kn">import</span> <span class="nn">csv</span>
 <span class="k">for</span> <span class="n">emp</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="n">EmployeeRecord</span><span class="o">.</span><span class="n">_make</span><span class="p">,</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;employees.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">))):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">emp</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">emp</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+    
+<span class="c1"># https://www.python.org/dev/peps/pep-0557/</span>
+<span class="c1"># http://www.attrs.org</span>
 </pre></div>
 
 </div>
@@ -12162,6 +12166,52 @@ Jack CTO
 <h2 id="8.3.6.-OrderedDict-objects">8.3.6. OrderedDict objects<a class="anchor-link" href="#8.3.6.-OrderedDict-objects">&#182;</a></h2>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="s1">&#39;abcde&#39;</span><span class="p">)</span>
+
+<span class="n">d</span><span class="o">.</span><span class="n">move_to_end</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># &#39;acdeb&#39;</span>
+
+<span class="n">d</span><span class="o">.</span><span class="n">move_to_end</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># &#39;bacde&#39;</span>
+
+<span class="n">d</span><span class="o">.</span><span class="n">popitem</span><span class="p">(</span><span class="n">last</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="c1"># &#39;bacd&#39;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;bacd&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -12281,6 +12331,175 @@ Jack CTO
 <li><strong>8.12. reprlib — Alternate repr() implementation</strong></li>
 <li>8.13. enum — Support for enumerations</li>
 </ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th>ABC</th>
+<th>Inherits from</th>
+<th>Abstract Methods</th>
+<th>Mixin Methods</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Container</td>
+<td></td>
+<td>__contains__</td>
+<td></td>
+</tr>
+<tr>
+<td>Hashable</td>
+<td></td>
+<td>__hash__</td>
+<td></td>
+</tr>
+<tr>
+<td>Iterable</td>
+<td></td>
+<td>__iter__</td>
+<td></td>
+</tr>
+<tr>
+<td>Iterator</td>
+<td>Iterable</td>
+<td>__next__</td>
+<td>__iter__</td>
+</tr>
+<tr>
+<td>Reversible</td>
+<td>Iterable</td>
+<td>__reversed__</td>
+<td></td>
+</tr>
+<tr>
+<td>Generator</td>
+<td>Iterator</td>
+<td>send, throw</td>
+<td>close, __iter__, __next__</td>
+</tr>
+<tr>
+<td>Sized</td>
+<td></td>
+<td>__len__</td>
+<td></td>
+</tr>
+<tr>
+<td>Callable</td>
+<td></td>
+<td>__call__</td>
+<td></td>
+</tr>
+<tr>
+<td>Collection</td>
+<td>Sized, Iterable, Container</td>
+<td>__contains__, __iter__, __len__</td>
+<td></td>
+</tr>
+<tr>
+<td>Sequence</td>
+<td>Reversible, Collection</td>
+<td>__getitem__, __len__</td>
+<td>__contains__, __iter__, __reversed__, index, and count</td>
+</tr>
+<tr>
+<td>MutableSequence</td>
+<td>Sequence</td>
+<td>__getitem__, __setitem__, __delitem__, __len__, insert</td>
+<td>Inherited Sequence methods and append, reverse, extend, pop, remove, and __iadd__</td>
+</tr>
+<tr>
+<td>ByteString</td>
+<td>Sequence</td>
+<td>__getitem__, __len__</td>
+<td>Inherited Sequence methods</td>
+</tr>
+<tr>
+<td>Set</td>
+<td>Collection</td>
+<td>__contains__, __iter__, __len__</td>
+<td>__le__, __lt__, __eq__, __ne__, __gt__, __ge__, __and__, __or__, __sub__, __xor__, and isdisjoint</td>
+</tr>
+<tr>
+<td>MutableSet</td>
+<td>Set</td>
+<td>__contains__, __iter__, __len__, add, discard</td>
+<td>Inherited Set methods and clear, pop, remove, __ior__, __iand__, __ixor__, and __isub__</td>
+</tr>
+<tr>
+<td>Mapping</td>
+<td>Collection</td>
+<td>__getitem__, __iter__, __len__</td>
+<td>__contains__, keys, items, values, get, __eq__, and __ne__</td>
+</tr>
+<tr>
+<td>MutableMapping</td>
+<td>Mapping</td>
+<td>__getitem__, __setitem__, __delitem__, __iter__, __len__</td>
+<td>Inherited Mapping methods and pop, popitem, clear, update, and setdefault</td>
+</tr>
+<tr>
+<td>MappingView</td>
+<td>Sized</td>
+<td></td>
+<td>__len__</td>
+</tr>
+<tr>
+<td>ItemsView</td>
+<td>MappingView, Set</td>
+<td></td>
+<td>__contains__, __iter__</td>
+</tr>
+<tr>
+<td>KeysView</td>
+<td>MappingView, Set</td>
+<td></td>
+<td>__contains__, __iter__</td>
+</tr>
+<tr>
+<td>ValuesView</td>
+<td>MappingView</td>
+<td></td>
+<td>__contains__, __iter__</td>
+</tr>
+<tr>
+<td>Awaitable</td>
+<td></td>
+<td>__await__</td>
+<td></td>
+</tr>
+<tr>
+<td>Coroutine</td>
+<td>Awaitable</td>
+<td>send, throw</td>
+<td>close</td>
+</tr>
+<tr>
+<td>AsyncIterable</td>
+<td></td>
+<td>__aiter__</td>
+<td></td>
+</tr>
+<tr>
+<td>AsyncIterator</td>
+<td>AsyncIterable</td>
+<td>__anext__</td>
+<td>__aiter__</td>
+</tr>
+<tr>
+<td>AsyncGenerator</td>
+<td>AsyncIterator</td>
+<td>asend, athrow</td>
+<td>aclose, __aiter__, __anext__</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
