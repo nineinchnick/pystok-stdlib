@@ -1,4 +1,6 @@
 jupyter==1.0.0
+nbconvert
+nbextensions
 ipython>=5.0.0
 ipython-sql>=0.3.8
 ipdb
